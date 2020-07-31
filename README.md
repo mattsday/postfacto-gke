@@ -2,7 +2,7 @@
 
 ## Standing up
 
-Create a Cloud SQL instance and give it a private IP address. Create a secret referencing the password you wish to use for the postgres user:
+Create a Cloud SQL Postgres instance and give it a private IP address. Create a secret referencing the password you wish to use for the postgres user:
 
 ```bash
 kubectl create secret generic postfacto-postgresql --from-literal postgres-password=<my-pass>
@@ -32,9 +32,9 @@ In Google Cloud platform create an OAuth2 web app with the appropriate redirect 
 
 ## Edit deployment
 
-1. Edit the file `deployment.yaml` to reflect your postgres IP address.
+1. Edit the file `deployment.yaml` to reflect your postgres IP address and OAuth2 Client ID.
 2. Edit the file `cert.yaml` to reflect your domain name
-3. Edit the file `ingress.yaml` to reflect your domain name, IP address and ClientID
+3. Edit the file `ingress.yaml` to reflect your domain name and IP address
 
 ## Deploy
 
