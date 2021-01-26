@@ -1,17 +1,3 @@
-# Source: postfacto/charts/redis/templates/secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: postfacto-redis
-  labels:
-    app: redis
-    chart: redis-9.4.3
-    release: "postfacto"
-    heritage: "Helm"
-type: Opaque
-data:
-  redis-password: "bTZXbW9hTUxoeg=="
----
 # Source: postfacto/charts/redis/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
