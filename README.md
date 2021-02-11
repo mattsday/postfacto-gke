@@ -2,10 +2,18 @@
 
 ## Standing up
 
-Create a Cloud SQL Postgres instance and give it a private IP address. Create a secret referencing the password you wish to use for the postgres user:
+Create a Cloud SQL Postgres instance and give it a private IP address.
+
+Create a secret referencing the password you wish to use for the postgres user:
 
 ```bash
 kubectl create secret generic postfacto-postgresql --from-literal postgres-password=<my-pass>
+```
+
+Create a config map with the Postgres instances IP address:
+
+```bash
+kubectl create configmap postgres --from-literal=ip=<postgres-private-ip>
 ```
 
 Create a secret for the base key (this is a random thing they use for security):
@@ -30,11 +38,16 @@ kubectl apply -f redis-helm.yaml
 
 In Google Cloud platform create an OAuth2 web app with the appropriate redirect domains - [instructions here](https://github.com/pivotal/postfacto/blob/master/deployment/README.md#allowing-users-to-create-retros)
 
-## Edit deployment
+Create a Kubernetes secret with the Client ID:
 
-1. Edit the file `deployment.yaml` to reflect your postgres IP address and OAuth2 Client ID.
-2. Edit the file `cert.yaml` to reflect your domain name
-3. Edit the file `ingress.yaml` to reflect your domain name and IP address
+```bash
+kubectl create secret generic oauth --from-literal client-id=<client-id>
+```
+
+## Edit the deployment
+
+1. Edit the file `cert.yaml` to reflect your domain name
+2. Edit the file `ingress.yaml` to reflect your domain name and IP address
 
 ## Deploy
 

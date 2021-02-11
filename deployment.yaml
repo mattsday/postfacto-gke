@@ -20,6 +20,11 @@ spec:
           image: postfacto/postfacto:4.3.0
           imagePullPolicy: Always
           env:
+          - name: POSTGRES_IP
+            valueFrom:
+              configMapKeyRef:
+                name: "postgres"
+                key: "ip"
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -35,14 +40,17 @@ spec:
               secretKeyRef:
                 name: "secret-key"
                 key: "secret-key-base"
+          - name: GOOGLE_OAUTH_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: "oauth"
+                key: "client-id"
           - name: DATABASE_URL
             value: "postgres://postgres:$(POSTGRES_PASSWORD)@10.41.208.3"
           - name: REDIS_URL
             value: "redis://:$(REDIS_PASSWORD)@postfacto-redis-master"
           - name: DISABLE_SSL_REDIRECT
             value: "false"
-          - name: GOOGLE_OAUTH_CLIENT_ID
-            value: "<your client ID>"
           ports:
             - name: http
               containerPort: 3000
