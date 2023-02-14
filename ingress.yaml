@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: postfacto-ingress
@@ -9,7 +9,10 @@ spec:
   rules:
   - http:
       paths:
-      - path: /*
+      - path: /
+        pathType: Prefix
         backend:
-          serviceName: postfacto
-          servicePort: 80
+          service:
+            name: postfacto
+            port:
+              number: 80

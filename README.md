@@ -48,6 +48,7 @@ kubectl create secret generic oauth --from-literal client-id=<client-id>
 
 1. Edit the file `cert.yaml` to reflect your domain name
 2. Edit the file `ingress.yaml` to reflect your domain name and IP address
+3. Edit the file `deployment.yaml` to replace the "10.41.208.3" IP address with your PostgreSQL internal IP.
 
 ## Deploy
 
